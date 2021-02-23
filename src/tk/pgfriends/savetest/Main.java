@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
 		
 		try {
 			database.save(file);
-			// comment in here :))
+			// comment in here :)))
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
