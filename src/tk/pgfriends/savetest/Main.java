@@ -33,7 +33,7 @@ public class Main extends JavaPlugin {
 		
 		if (file.exists())
 		{
-			// ignore for now
+			// ignore for now lol
 			// get the variables from database here
 		}
 		
