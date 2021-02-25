@@ -59,12 +59,11 @@ public class Main extends JavaPlugin {
 		
 		try {
 			database.save(file);
-			// comment in here :)))
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }
+
+//nice
