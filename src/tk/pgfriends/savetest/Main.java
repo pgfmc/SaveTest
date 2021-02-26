@@ -13,15 +13,15 @@ import tk.pgfriends.savetest.events.PlayerEvents;
 
 public class Main extends JavaPlugin {
 	
-	public static HashMap<String, Location> blBr = new HashMap<String, Location>();
+	public static HashMap<String, Location> blBr = new HashMap<String, Location>(); // For orginization. String is UUID.toString()
 	
 	@Override
-	public void onEnable()
+	public void onEnable() // When the plugin turns on
 	{
-		File file = new File(getDataFolder() + File.separator + "database.yml");
-		FileConfiguration database = YamlConfiguration.loadConfiguration(file);
+		File file = new File(getDataFolder() + File.separator + "database.yml"); // Creates a new file in file path (where the plugin is at, so the plugin folder)/SaveTest/database.yml
+		FileConfiguration database = YamlConfiguration.loadConfiguration(file); // Creates a YAML file type from File and loads it in the plugin
 		
-		if (!file.exists())
+		if (!file.exists()) // If the file doesn't exist, create a new one
 		{
 			try {
 				file.createNewFile();
@@ -31,39 +31,36 @@ public class Main extends JavaPlugin {
 			}
 		}
 		
-		if (file.exists())
+		if (file.exists()) // This will be used to load in data in the future, not completely necessary to load in the whole file unless you want to
 		{
-			// ignore for now lol
-			// get the variables from database here
+			// get the variables from database.yml here, look up how
 		}
 		
 		
 		
-		getServer().getPluginManager().registerEvents(new PlayerEvents(), this);
+		getServer().getPluginManager().registerEvents(new PlayerEvents(), this); // Registers PlayerEvents class
 	}
 	
 	@Override
-	public void onDisable()
+	public void onDisable() // When the plugin turns off
 	{
 		
-		File file = new File(getDataFolder() + File.separator + "database.yml");
-		FileConfiguration database = YamlConfiguration.loadConfiguration(file);
+		File file = new File(getDataFolder() + File.separator + "database.yml"); // Creates a new file in file path (where the plugin is at, so the plugin folder)/SaveTest/database.yml
+		FileConfiguration database = YamlConfiguration.loadConfiguration(file); // Creates a YAML file type from File and loads it in the plugin
 		
-		for (String uuid : blBr.keySet())
+		for (String uuid : blBr.keySet()) // For every key in blBr<String, Location>
 		{
-			database.set("blockBroken.playerData." + uuid, blBr.get(uuid).toString());
+			database.set("blockBroken.playerData." + uuid, blBr.get(uuid).toString()); // Add to the database.yml file the UUID in String form and the Location in String form under the UUID
 		}
 		
 		
 		
 		
 		try {
-			database.save(file);
+			database.save(file); // Tries to save the file
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); // Doesn't completely crash the plugin if the above fails
 		}
 	}
 }
-
-//nice
